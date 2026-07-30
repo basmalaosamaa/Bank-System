@@ -431,7 +431,7 @@ void ShowDeposit() {
     }
     
     char answer;
-    cout << "Are you sure you want to delete this client? y/n ?";
+    cout << "Are you sure you want to perform this transaction? y/n ?";
     cin >> answer;
 
     if (toupper(answer) == 'Y') {
@@ -444,9 +444,6 @@ void ShowDeposit() {
     
 }
 
-void CalculateAllBalances() {
-    
-}
 void ShowTotalBalances() {
     vector<sClient> vClients;
     vClients = LoadDataFromFile(FileName);
@@ -473,6 +470,47 @@ void ShowTotalBalances() {
  
 }
 
+void ShowWithdraw() {
+    cout << "\n----------------------------------------\n";
+    cout << "\Withdraw Screen";
+    cout << "\n----------------------------------------\n\n";
+
+    vector<sClient> vClients = LoadDataFromFile(FileName);
+    string AccountNumber = GetAccountNumber();
+
+    while (!FindAccountByAccountNumber(AccountNumber, vClients)) {
+        cout << "Client with [" << AccountNumber << "] does not Exist.";
+        AccountNumber = GetAccountNumber();
+    }
+    double withdrawAmount = 0;
+    double Totalbalance = 0;
+    for (sClient& C : vClients) {
+        if (AccountNumber == C.AccNum) {
+            cout << "Please enter Withdraw Amount?";
+            cin >> withdrawAmount;
+            while (withdrawAmount > C.AccBalance) {
+                cout << "\nAmount Exceeds the balance, you can withdraw up to : " << C.AccBalance;
+                cout << "\nPlease enter another amount? ";
+                cin >> withdrawAmount;
+            }
+            Totalbalance = C.AccBalance - withdrawAmount;
+            C.AccBalance = Totalbalance;
+        }
+    }
+
+    char answer;
+    cout << "Are you sure you want to perform this transaction? y/n ?";
+    cin >> answer;
+
+    if (toupper(answer) == 'Y') {
+        SaveClientsToFile(FileName, vClients);
+        cout << "Done Successfully. your balance is " << Totalbalance;
+    }
+    cout << "\n\nPress any key to go back to the Transactions Menu...";
+    system("pause>0");
+    system("cls");
+}
+
 void ChooseTransactionPage(short PageNumber) {
     switch (PageNumber) {
     case ePageTransactions::Deposit:
@@ -480,20 +518,20 @@ void ChooseTransactionPage(short PageNumber) {
         ShowDeposit();
         TransactionsMenuScreen();
         break;
-        /*case ePageTransactions::Withdraw:
+        case ePageTransactions::Withdraw:
             system("cls");
             ShowWithdraw();
-            start();
-            break;*/
+            TransactionsMenuScreen();
+            break;
         case ePageTransactions::TotalBalances:
             system("cls");
             ShowTotalBalances();
-            start();
+            TransactionsMenuScreen();
             break;
-       /* case ePageTransactions::MainMenu:
+        case ePageTransactions::MainMenu:
             system("cls");
             start();
-            break;*/
+            break;
     default:
         ShowClientList();
         break;
@@ -503,9 +541,9 @@ void TransactionsMenuScreen() {
     cout << "=================================\n";
     cout << "\t Transactions Menu Screen \t\t\n";
     cout << "=================================\n";
-    cout << "\t [1] Deposit. \n"; // +
-    cout << "\t [2] Withdraw. \n"; // -
-    cout << "\t [3] Total Balances. \n"; // all clients
+    cout << "\t [1] Deposit. \n";
+    cout << "\t [2] Withdraw. \n"; 
+    cout << "\t [3] Total Balances. \n";
     cout << "\t [4] Main Menu. \n";
     cout << "=================================\n";
     cout << "Choose what do you want to do? [1 to 4]?";
