@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="Bank.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FunctionManageUsers.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
