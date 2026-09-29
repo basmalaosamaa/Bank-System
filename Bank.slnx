@@ -3,5 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="ATM_System/ATM_System.vcxproj" Id="175df257-ce81-40cf-a3d2-469667efccae" />
   <Project Path="Bank/Bank.vcxproj" Id="3d439bd2-6cdd-4b10-80cc-f4809ee415ce" />
 </Solution>

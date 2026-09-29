@@ -32,7 +32,7 @@ enum enMainMenuPermissions {
     pUpdateClients = 8, pFindClient = 16, pTranactions = 32, pManageUsers = 64
 };
 
-const string ClientsFileName = "Clients.txt";
+const string ClientsFileName = "C:\\Users\\User\\source\\repos\\Bank\\Data\\Clients.txt";
 const string UsersFileName = "Users.txt";
 
 stUser CurrentUser;
