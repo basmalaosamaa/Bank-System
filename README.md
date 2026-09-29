@@ -1,30 +1,23 @@
-# Bank Management System (C++)
+# Bank & ATM Management System
 
-A C++ Console Application that simulates a full Bank Management System. This project manages client data and banking transactions with persistent storage using text files. Built as a capstone project to demonstrate core C++ concepts and data handling.
+A modular C++ console solution featuring two fully integrated applications: an **Admin Bank Console** and a **Client ATM Interface**. Both applications operate on a shared persistent database with real-time balance synchronization.
 
-## Features
+## Key Features
 
-* **Client Management (CRUD Operations):**
-  * **Show Clients:** Display a formatted list of all existing bank clients.
-  * **Add New Client:** Add new client records with unique account number validation.
-  * **Find Client:** Quick search for a client by their account number.
-  * **Update Client:** Modify client information (Name, Phone, Pin Code, Balance).
-  * **Delete Client:** Remove clients safely with confirmation.
-* **Transactions System:**
-  * **Deposit:** Deposit money directly into client accounts.
-  * **Withdraw:** *(In Progress)* Safe withdrawal operations.
-  * **Total Balances:** View total assets held in the bank across all clients.
-* **Data Persistence:** Automatically saves and loads client data to/from external text files (`Clients.text`) using a custom delimiter (`#//#`).
+### Bank Management (Admin Panel)
+- **Full Client CRUD:** Display, add, search, update, and delete client records with account validation.
+- **Transaction Controls:** Perform balance deposits, withdrawals, and monitor total bank assets.
 
-## Built With
+### ATM System (Client Interface)
+- **Authentication:** Secure login using Account Number and PIN.
+- **Withdrawal Modes:** Quick withdraw (preset amounts) and normal withdraw (multiples of 5).
+- **Account Services:** Deposit funds and check real-time account balances.
 
-* **Language:** C++
-* **Standard Libraries:** `<vector>`, `<fstream>`, `<iomanip>`, `<string>`, `<iostream>`
-* **Paradigm:** Procedural Programming, Structs, and Enums for clean control flow.
+## Technical Highlights
+- **Shared File Database:** Centralized data persistence using `Clients.txt`.
+- **Data Synchronization:** Transactions made via the ATM update the central record instantly for the Bank application.
+- **Clean Architecture:** Divided into two distinct C++ projects within a single Visual Studio Solution.
 
-##  Status & Future Improvements
-* [x] Core Client CRUD operations
-* [x] File persistence & custom parsing
-* [ ] Complete Withdrawal transaction module
-* [ ] Add User/Admin Authentication system
-* [ ] Refactor codebase into Object-Oriented Programming (OOP)
+## Tech Stack
+- **Language:** C++
+- **Design:** Procedural Programming, Custom Structs, Enums, and Vector-based data handling
